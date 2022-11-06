@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pink3_background"
+    android:clickable="true"
+    android:theme="@style/Theme.AirTime.Detail"
+    android:weightSum="100"
+
+    tools:context=".rotation.controlledrotation.ui.ControlledRotationDetailFragment">
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="40"
+        android:background="@drawable/detail_table_border"
+        android:clipToOutline="true"
+
+        android:src="@drawable/splashr" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@drawable/detail_table_border"
+        android:theme="@style/Theme.AirTime.Detail.TableRow"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/controlled_rotation_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/conrolled_rotation_detail_id"></TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="10"
+        android:background="@drawable/detail_table_border"
+        android:theme="@style/Theme.AirTime.Detail.TableRow"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="50"
+            android:text="@string/conrolled_rotation_detail_time"></TextView>
+
+        <TextView
+            android:id="@+id/air_time"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="50"
+            android:textAlignment="textEnd"></TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@drawable/detail_table_border"
+        android:theme="@style/Theme.AirTime.Detail.TableRow"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="50"
+            android:text="@string/conrolled_rotation_detail_result"></TextView>
+
+        <Spinner
+            android:id="@+id/exercice_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="50"
+            android:entries="@array/exercice_result_dropdown_item"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/black"
+            android:spinnerMode="dropdown"
+            android:popupTheme="@style/Theme.AirTime.DetailPopup"
+            android:theme="@style/Theme.AirTime.DetailPopup" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:background="@drawable/detail_table_border"
+
+        android:backgroundTint="@color/pink3_background"
+        android:gravity="right">
+
+
+        <Button
+            android:id="@+id/done_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pink_background"
+            android:text="Done"
+            android:textColor="@color/pink3_background"
+            android:theme="@style/Theme.AirTime.Detail.Button" />
+
+
+    </TableRow>
+</TableLayout>

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">AirTime</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="video_fragment_label">Video</string>
+    <string name="session_fragment_label">Session</string>
+    <string name="rotation_conrolled_label">Controlled Rotation</string>
+    <string name="sample_fragment_label">Samples</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="element_text">Element</string>
+    <string name="title_activity_session_detail">SessionDetailActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="conrolled_rotation_detail_id" />
+    <string name="conrolled_rotation_detail_time">Air Time</string>
+    <string name="conrolled_rotation_detail_result">Exercice Result</string>
+    <string name="rotation_conrolled_detail_label">Controlled Rotation Detail</string>
+    <string name="spinner_title">test</string>
+
+    <string-array name="exercice_result_dropdown_item">
+        <item>Insuffisant</item>
+        <item>Passable</item>
+        <item>Suffisant</item>
+        <item>Satisfaisant</item>
+        <item>Excellent</item>
+    </string-array>
+
+</resources>

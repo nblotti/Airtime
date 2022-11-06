@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/session_bg"
+    android:orientation="vertical"
+    android:theme="@style/Theme.AirTime.SessionListContent"
+    android:weightSum="100">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:theme="@style/Theme.AirTime.SessionListContentH"></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="15"
+            android:text="Date"
+            android:theme="@style/Theme.AirTime.List.Date">></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="jrs"
+            android:theme="@style/Theme.AirTime.SessionListContentH"></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="jrd"
+            android:theme="@style/Theme.AirTime.SessionListContentH"></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="jrx"
+            android:theme="@style/Theme.AirTime.SessionListContentH"></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="rm"
+            android:theme="@style/Theme.AirTime.SessionListContentH"></TextView>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="cr"
+            android:theme="@style/Theme.AirTime.SessionListContentH"></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="15"
+            android:text="dr"
+            android:theme="@style/Theme.AirTime.SessionListContentH"></TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="65"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:clipToOutline="true"
+            android:src="@drawable/splashr"
+            android:theme="@style/Theme.AirTime.List.Number">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/session_id"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/session_date"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="15"
+            android:textStyle="bold"
+            android:theme="@style/Theme.AirTime.List.Date"/>
+
+
+        <TextView
+            android:id="@+id/s_jr_s_average"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="0"
+            android:theme="@style/Theme.AirTime.List.Number"></TextView>
+
+        <TextView
+            android:id="@+id/s_jr_x_average"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="0"
+            android:theme="@style/Theme.AirTime.List.Number"></TextView>
+
+        <TextView
+            android:id="@+id/s_jr_d_average"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="0"
+            android:theme="@style/Theme.AirTime.List.Number"></TextView>
+
+        <TextView
+            android:id="@+id/s_rm_average"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="0"
+            android:theme="@style/Theme.AirTime.List.Number"></TextView>
+
+        />
+
+        <TextView
+            android:id="@+id/s_cr_average"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="0"
+            android:theme="@style/Theme.AirTime.List.Number"></TextView>
+
+        <TextView
+            android:id="@+id/s_da_average"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="15"
+            android:theme="@style/Theme.AirTime.List.Number"></TextView>
+
+    </LinearLayout>
+</LinearLayout>

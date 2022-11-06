@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/SessionFragment">
+
+
+    <fragment
+        android:id="@+id/SessionFragment"
+        android:name="ch.nblotti.airtime.session.ui.SessionFragment"
+        android:label="@string/session_fragment_label"
+        tools:layout="@layout/fragment_session">
+
+        <argument
+            android:name="session_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_SessionFragment_to_SampleFragment"
+            app:destination="@id/SampleFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+        </action>
+
+        <action
+            android:id="@+id/action_SessionFragment_to_ControlledRotationFragment"
+            app:destination="@id/ControlledRotationFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+        </action>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/SampleFragment"
+        android:name="ch.nblotti.airtime.sample.ui.SampleFragment"
+        android:label="@string/sample_fragment_label"
+        tools:layout="@layout/fragment_session">
+        <argument
+            android:name="session_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_SampleFragment_to_NewVideoFragment"
+            app:destination="@id/NewVideoFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/NewVideoFragment"
+        android:name="ch.nblotti.airtime.video.ui.NewVideoFragment"
+        android:label="@string/video_fragment_label"
+        tools:layout="@layout/fragment_new_video"></fragment>
+
+    <fragment
+        android:id="@+id/ControlledRotationDetailFragment"
+        android:name="ch.nblotti.airtime.rotation.controlledrotation.ui.ControlledRotationDetailFragment"
+        android:label="@string/rotation_conrolled_detail_label"
+        tools:layout="@layout/fragment_controlled_rotation_detail"></fragment>
+
+    <fragment
+        android:id="@+id/ControlledRotationFragment"
+        android:name="ch.nblotti.airtime.rotation.controlledrotation.ui.ControlledRotationFragment"
+        android:label="@string/rotation_conrolled_label"
+        tools:layout="@layout/fragment_controlled_rotation">
+
+        <argument
+            android:name="controlled_rotation_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+        <argument
+            android:name="session_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+        <argument
+            android:name="air_time"
+            android:defaultValue="0"
+            app:argType="float" />
+        <action
+            android:id="@+id/action_ControlledRotationFragment_to_NewVideoFragment"
+            app:destination="@id/NewVideoFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+        </action>
+        <action
+            android:id="@+id/action_ControlledRotationFragment_to_ControlledRotationDetailFragment"
+            app:destination="@id/ControlledRotationDetailFragment">
+            <argument
+                android:name="controlled_rotation_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+            <argument
+                android:name="air_time"
+                android:defaultValue="0"
+                app:argType="float" />
+        </action>
+    </fragment>
+
+
+</navigation>
