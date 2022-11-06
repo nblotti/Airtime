@@ -117,7 +117,7 @@
             android:theme="@style/Theme.AirTime.List.Number"></TextView>
 
         <TextView
-            android:id="@+id/s_jr_x_average"
+            android:id="@+id/s_jr_d_average"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="10"
@@ -125,7 +125,7 @@
             android:theme="@style/Theme.AirTime.List.Number"></TextView>
 
         <TextView
-            android:id="@+id/s_jr_d_average"
+            android:id="@+id/s_jr_x_average"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="10"

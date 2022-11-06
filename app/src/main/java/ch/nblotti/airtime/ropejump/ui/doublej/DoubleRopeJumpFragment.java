@@ -1,6 +1,9 @@
-package ch.nblotti.airtime.ropejump.ui.simpleropejump;
+package ch.nblotti.airtime.ropejump.ui.doublej;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -11,10 +14,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -23,22 +22,22 @@ import javax.inject.Inject;
 
 import ch.nblotti.airtime.EXERCICE_STATUS;
 import ch.nblotti.airtime.MessageEvent;
-import ch.nblotti.airtime.databinding.FragmentSimpleRopeJumpBinding;
+import ch.nblotti.airtime.databinding.FragmentDoubleRopeJumpBinding;
 import ch.nblotti.airtime.ropejump.ROPEJUMP_TYPE;
 import ch.nblotti.airtime.ropejump.RopeJump;
 import ch.nblotti.airtime.ropejump.RopeJumpRepository;
-import ch.nblotti.airtime.rotation.controlledrotation.ui.ControlledRotationFragment;
+import ch.nblotti.airtime.ropejump.ui.simplej.SimpleRopeJumpFragmentDirections;
 import ch.nblotti.airtime.rotation.controlledrotation.ui.ControlledRotationFragmentDirections;
 import ch.nblotti.airtime.sample.ui.SampleFragmentArgs;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class SimpleRopeJumpFragment extends Fragment {
+public class DoubleRopeJumpFragment extends Fragment {
 
-    private FragmentSimpleRopeJumpBinding binding;
-    private SimpleRopeJumpCustomAdapter simpleRopeJumpCustomAdapter;
+    private FragmentDoubleRopeJumpBinding binding;
+    private DoubleRopeJumpCustomAdapter doubleRopeJumpCustomAdapter;
 
-    public SimpleRopeViewModel viewModel;
+    public DoubleRopeViewModel viewModel;
 
     private Long session_id = 0L;
 
@@ -52,13 +51,13 @@ public class SimpleRopeJumpFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSimpleRopeJumpBinding.inflate(inflater, container, false);
+        binding = FragmentDoubleRopeJumpBinding.inflate(inflater, container, false);
 
         session_id = SampleFragmentArgs.fromBundle(getArguments()).getSessionId();
 
 
         binding.listView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        simpleRopeJumpCustomAdapter = new SimpleRopeJumpCustomAdapter(getActivity());
+        doubleRopeJumpCustomAdapter = new DoubleRopeJumpCustomAdapter(getActivity());
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -72,7 +71,7 @@ public class SimpleRopeJumpFragment extends Fragment {
                 if (swipeDir != ItemTouchHelper.RIGHT) {
                     return;
                 }
-                RopeJump sample = simpleRopeJumpCustomAdapter.getItem(viewHolder.getAdapterPosition());
+                RopeJump sample = doubleRopeJumpCustomAdapter.getItem(viewHolder.getAdapterPosition());
                 //TODO remove associated movies
                 ropeJumpRepository.deleteById(sample.getUid());
 
@@ -82,33 +81,32 @@ public class SimpleRopeJumpFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(binding.listView);
 
 
-        viewModel = new ViewModelProvider(this).get(SimpleRopeViewModel.class);
+        viewModel = new ViewModelProvider(this).get(DoubleRopeViewModel.class);
 
-        viewModel.getAllRopeJump(session_id, ROPEJUMP_TYPE.SIMPLE).observe(getViewLifecycleOwner(), samples -> {
+        viewModel.getAllRopeJump(session_id, ROPEJUMP_TYPE.DOUBLE).observe(getViewLifecycleOwner(), samples -> {
 
 
-            simpleRopeJumpCustomAdapter.setSamples(samples);
-            simpleRopeJumpCustomAdapter.notifyDataSetChanged();
+            doubleRopeJumpCustomAdapter.setSamples(samples);
+            doubleRopeJumpCustomAdapter.notifyDataSetChanged();
 
         });
 
 
-        binding.listView.setAdapter(simpleRopeJumpCustomAdapter);
+        binding.listView.setAdapter(doubleRopeJumpCustomAdapter);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                SimpleRopeJumpFragmentDirections.ActionSimpleRopeJumpFragmentToNewRopeJumpFragment action = SimpleRopeJumpFragmentDirections.actionSimpleRopeJumpFragmentToNewRopeJumpFragment();
+                DoubleRopeJumpFragmentDirections.ActionDoubleRopeJumpFragmentToNewRopeJumpFragment action = DoubleRopeJumpFragmentDirections.actionDoubleRopeJumpFragmentToNewRopeJumpFragment();
                 action.setSessionId(session_id);
-                action.setRopejumpType(ROPEJUMP_TYPE.SIMPLE.getValue());
-                NavHostFragment.findNavController(SimpleRopeJumpFragment.this).navigate(action);
+                action.setRopejumpType(ROPEJUMP_TYPE.DOUBLE.getValue());
+                action.setMin(10);
+                action.setMax(24);
+                NavHostFragment.findNavController(DoubleRopeJumpFragment.this).navigate(action);
 
             }
         });
-
-
-        EventBus.getDefault().register(this);
 
 
         getParentFragmentManager().setFragmentResultListener("ropeJump", this, new FragmentResultListener() {
@@ -132,18 +130,6 @@ public class SimpleRopeJumpFragment extends Fragment {
 
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event) {
-        // Do something
-        Long session;
-        switch (event.getEventType()) {
-            case UPDATE_CONTROLLED_ROTATION:
-                ControlledRotationFragmentDirections.ActionControlledRotationFragmentToControlledRotationDetailFragment action = ControlledRotationFragmentDirections.actionControlledRotationFragmentToControlledRotationDetailFragment();
-                action.setControlledRotationId(event.getuID());
-                NavHostFragment.findNavController(SimpleRopeJumpFragment.this).navigate(action);
-                break;
-        }
-    }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -155,7 +141,6 @@ public class SimpleRopeJumpFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        EventBus.getDefault().unregister(this);
         binding = null;
     }
 

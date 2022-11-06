@@ -22,8 +22,7 @@ import java.util.TimerTask;
 import ch.nblotti.airtime.EXERCICE_STATUS;
 import ch.nblotti.airtime.databinding.FragmentNewRopeJumpBinding;
 import ch.nblotti.airtime.ropejump.ROPEJUMP_TYPE;
-import ch.nblotti.airtime.ropejump.ui.simpleropejump.SimpleRopeJumpFragmentArgs;
-import ch.nblotti.airtime.sample.ui.SampleFragmentArgs;
+import ch.nblotti.airtime.ropejump.ui.simplej.SimpleRopeJumpFragmentArgs;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
@@ -51,23 +50,26 @@ public class NewRopeJumpFragment extends Fragment {
 
         session_id = SimpleRopeJumpFragmentArgs.fromBundle(getArguments()).getSessionId();
         ropejumpType = ROPEJUMP_TYPE.valueOf(SimpleRopeJumpFragmentArgs.fromBundle(getArguments()).getRopejumpType());
-
+        int min = SimpleRopeJumpFragmentArgs.fromBundle(getArguments()).getMin();
+        int max = SimpleRopeJumpFragmentArgs.fromBundle(getArguments()).getMax();
 
         viewModel = new ViewModelProvider(this).get(NewRopeViewModel.class);
 
-        binding.exerciceResult.setSelection(2);
+        binding.exerciceSeconds.setText(String.valueOf(this.ropejumpType.getTime()));
+
+        binding.exerciceResult.setSelection(1);
         binding.exerciceResult.setEnabled(false);
 
         binding.exerciceNumber.setMinValue(0);
-        binding.exerciceNumber.setMaxValue(70);
-        binding.exerciceNumber.setValue(50);
+        binding.exerciceNumber.setMaxValue(max * 2);
+        binding.exerciceNumber.setValue(max);
         binding.exerciceNumber.setWrapSelectorWheel(true);
         binding.exerciceNumber.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                if (newVal < 35) {
+                if (newVal < min) {
                     binding.exerciceResult.setSelection(0);
-                } else if (newVal <= 54) {
+                } else if (newVal <= max) {
                     binding.exerciceResult.setSelection(1);
                 } else {
                     binding.exerciceResult.setSelection(2);
@@ -99,7 +101,7 @@ public class NewRopeJumpFragment extends Fragment {
                 binding.doneStart.setVisibility(View.GONE);
                 binding.doneButton.setVisibility(View.GONE);
                 binding.doneReset.setVisibility(View.VISIBLE);
-                startTimer(15);
+                startTimer(ropejumpType.getTime());
             }
         });
 

@@ -43,6 +43,24 @@
                 app:argType="long" />
         </action>
 
+        <action
+            android:id="@+id/action_SessionFragment_to_DoubleRopeJumpFragment"
+            app:destination="@id/DoubleRopeJumpFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+        </action>
+
+        <action
+            android:id="@+id/action_SessionFragment_to_CrossRopeJumpFragment"
+            app:destination="@id/CrossRopeJumpFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+        </action>
+
 
     </fragment>
 
@@ -80,7 +98,7 @@
 
     <fragment
         android:id="@+id/SimpleRopeJumpFragment"
-        android:name="ch.nblotti.airtime.ropejump.ui.simpleropejump.SimpleRopeJumpFragment"
+        android:name="ch.nblotti.airtime.ropejump.ui.simplej.SimpleRopeJumpFragment"
         android:label="@string/ropejump_fragment_label"
         tools:layout="@layout/fragment_simple_rope_jump">
 
@@ -88,6 +106,16 @@
             android:name="session_id"
             android:defaultValue="0L"
             app:argType="long" />
+
+        <argument
+            android:name="min"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="max"
+            android:defaultValue="0"
+            app:argType="integer" />
 
         <argument
             android:name="ropejump_type"
@@ -103,6 +131,113 @@
             <argument
                 android:name="ropejump_type"
                 android:defaultValue="1"
+                app:argType="integer" />
+
+            <argument
+                android:name="min"
+                android:defaultValue="0"
+                app:argType="integer" />
+
+            <argument
+                android:name="max"
+                android:defaultValue="0"
+                app:argType="integer" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/DoubleRopeJumpFragment"
+        android:name="ch.nblotti.airtime.ropejump.ui.doublej.DoubleRopeJumpFragment"
+        android:label="@string/ropejump_fragment_label"
+        tools:layout="@layout/fragment_double_rope_jump">
+
+        <argument
+            android:name="session_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+
+        <argument
+            android:name="ropejump_type"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <argument
+            android:name="min"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="max"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_DoubleRopeJumpFragment_to_NewRopeJumpFragment"
+            app:destination="@id/NewRopeFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+            <argument
+                android:name="ropejump_type"
+                android:defaultValue="1"
+                app:argType="integer" />
+            <argument
+                android:name="min"
+                android:defaultValue="0"
+                app:argType="integer" />
+
+            <argument
+                android:name="max"
+                android:defaultValue="0"
+                app:argType="integer" />
+        </action>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/CrossRopeJumpFragment"
+        android:name="ch.nblotti.airtime.ropejump.ui.cross.CrossRopeJumpFragment"
+        android:label="@string/ropejump_fragment_label"
+        tools:layout="@layout/fragment_cross_rope_jump">
+
+        <argument
+            android:name="session_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+
+        <argument
+            android:name="ropejump_type"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <argument
+            android:name="min"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="max"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_CrossRopeJumpFragment_to_NewRopeJumpFragment"
+            app:destination="@id/NewRopeFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+            <argument
+                android:name="ropejump_type"
+                android:defaultValue="1"
+                app:argType="integer" />
+            <argument
+                android:name="min"
+                android:defaultValue="0"
+                app:argType="integer" />
+
+            <argument
+                android:name="max"
+                android:defaultValue="0"
                 app:argType="integer" />
         </action>
 

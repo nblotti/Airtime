@@ -1,4 +1,4 @@
-package ch.nblotti.airtime.ropejump.ui.simpleropejump;
+package ch.nblotti.airtime.ropejump.ui.doublej;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -13,13 +13,13 @@ import ch.nblotti.airtime.ropejump.RopeJumpRepository;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class SimpleRopeViewModel extends ViewModel {
+public class DoubleRopeViewModel extends ViewModel {
 
     RopeJumpRepository ropeJumpRepository;
 
 
     @Inject
-    public SimpleRopeViewModel(RopeJumpRepository ropeJumpRepository) {
+    public DoubleRopeViewModel(RopeJumpRepository ropeJumpRepository) {
         this.ropeJumpRepository = ropeJumpRepository;
 
     }

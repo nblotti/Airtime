@@ -71,8 +71,16 @@ public class SessionFragment extends Fragment {
                 break;
 
             case JR_D_CLICK:
+                session = event.getuID();
+                SessionFragmentDirections.ActionSessionFragmentToDoubleRopeJumpFragment S2DRJAction = SessionFragmentDirections.actionSessionFragmentToDoubleRopeJumpFragment();
+                S2DRJAction.setSessionId(session);
+                NavHostFragment.findNavController(SessionFragment.this).navigate(S2DRJAction);
                 break;
             case JR_X_CLICK:
+                session = event.getuID();
+                SessionFragmentDirections.ActionSessionFragmentToCrossRopeJumpFragment S2XJAction = SessionFragmentDirections.actionSessionFragmentToCrossRopeJumpFragment();
+                S2XJAction.setSessionId(session);
+                NavHostFragment.findNavController(SessionFragment.this).navigate(S2XJAction);
                 break;
 
             case R_M_CLICK:

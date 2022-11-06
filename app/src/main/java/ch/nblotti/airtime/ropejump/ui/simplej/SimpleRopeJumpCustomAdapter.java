@@ -1,4 +1,4 @@
-package ch.nblotti.airtime.ropejump.ui.simpleropejump;
+package ch.nblotti.airtime.ropejump.ui.simplej;
 
 import static ch.nblotti.airtime.MessageEvent.EVENT_TYPE.UPDATE_CONTROLLED_ROTATION;
 
@@ -17,7 +17,6 @@ import java.util.List;
 import ch.nblotti.airtime.MessageEvent;
 import ch.nblotti.airtime.R;
 import ch.nblotti.airtime.ropejump.RopeJump;
-import ch.nblotti.airtime.rotation.controlledrotation.ControlledRotation;
 
 public class SimpleRopeJumpCustomAdapter extends RecyclerView.Adapter<SimpleRopeJumpCustomAdapter.ViewHolder> {
 
