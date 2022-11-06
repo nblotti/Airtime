@@ -1,4 +1,4 @@
-package ch.nblotti.airtime.rotation.controlledrotation.ui;
+package ch.nblotti.airtime.ropejump.ui.simpleropejump;
 
 import android.os.Bundle;
 
@@ -21,25 +21,30 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
+import ch.nblotti.airtime.EXERCICE_STATUS;
 import ch.nblotti.airtime.MessageEvent;
-import ch.nblotti.airtime.databinding.FragmentControlledRotationBinding;
-import ch.nblotti.airtime.rotation.controlledrotation.ControlledRotation;
-import ch.nblotti.airtime.rotation.controlledrotation.ControlledRotationRepository;
+import ch.nblotti.airtime.databinding.FragmentSimpleRopeJumpBinding;
+import ch.nblotti.airtime.ropejump.ROPEJUMP_TYPE;
+import ch.nblotti.airtime.ropejump.RopeJump;
+import ch.nblotti.airtime.ropejump.RopeJumpRepository;
+import ch.nblotti.airtime.rotation.controlledrotation.ui.ControlledRotationFragment;
+import ch.nblotti.airtime.rotation.controlledrotation.ui.ControlledRotationFragmentDirections;
 import ch.nblotti.airtime.sample.ui.SampleFragmentArgs;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class ControlledRotationFragment extends Fragment {
+public class SimpleRopeJumpFragment extends Fragment {
 
-    private FragmentControlledRotationBinding binding;
-    private ControlledRotationCustomAdapter controlledRotationCustomAdapter;
+    private FragmentSimpleRopeJumpBinding binding;
+    private SimpleRopeJumpCustomAdapter simpleRopeJumpCustomAdapter;
 
-    public ControlledRotationViewModel viewModel;
+    public SimpleRopeViewModel viewModel;
 
     private Long session_id = 0L;
 
+
     @Inject
-    ControlledRotationRepository controlledRotationRepository;
+    RopeJumpRepository ropeJumpRepository;
 
     @Override
     public View onCreateView(
@@ -47,12 +52,13 @@ public class ControlledRotationFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentControlledRotationBinding.inflate(inflater, container, false);
+        binding = FragmentSimpleRopeJumpBinding.inflate(inflater, container, false);
 
         session_id = SampleFragmentArgs.fromBundle(getArguments()).getSessionId();
 
+
         binding.listView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        controlledRotationCustomAdapter = new ControlledRotationCustomAdapter(getActivity());
+        simpleRopeJumpCustomAdapter = new SimpleRopeJumpCustomAdapter(getActivity());
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -66,9 +72,9 @@ public class ControlledRotationFragment extends Fragment {
                 if (swipeDir != ItemTouchHelper.RIGHT) {
                     return;
                 }
-                ControlledRotation sample = controlledRotationCustomAdapter.getItem(viewHolder.getAdapterPosition());
+                RopeJump sample = simpleRopeJumpCustomAdapter.getItem(viewHolder.getAdapterPosition());
                 //TODO remove associated movies
-                controlledRotationRepository.deleteById(sample.getUid());
+                ropeJumpRepository.deleteById(sample.getUid());
 
 
             }
@@ -76,47 +82,52 @@ public class ControlledRotationFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(binding.listView);
 
 
-        viewModel = new ViewModelProvider(this).get(ControlledRotationViewModel.class);
+        viewModel = new ViewModelProvider(this).get(SimpleRopeViewModel.class);
 
-        viewModel.getAllControlledRotation(session_id).observe(getViewLifecycleOwner(), samples -> {
+        viewModel.getAllRopeJump(session_id, ROPEJUMP_TYPE.SIMPLE).observe(getViewLifecycleOwner(), samples -> {
 
 
-            controlledRotationCustomAdapter.setSamples(samples);
-            controlledRotationCustomAdapter.notifyDataSetChanged();
+            simpleRopeJumpCustomAdapter.setSamples(samples);
+            simpleRopeJumpCustomAdapter.notifyDataSetChanged();
 
         });
 
 
-        binding.listView.setAdapter(controlledRotationCustomAdapter);
+        binding.listView.setAdapter(simpleRopeJumpCustomAdapter);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ControlledRotationFragmentDirections.ActionControlledRotationFragmentToNewVideoFragment action = ControlledRotationFragmentDirections.actionControlledRotationFragmentToNewVideoFragment();
+                SimpleRopeJumpFragmentDirections.ActionSimpleRopeJumpFragmentToNewRopeJumpFragment action = SimpleRopeJumpFragmentDirections.actionSimpleRopeJumpFragmentToNewRopeJumpFragment();
                 action.setSessionId(session_id);
-
-                NavHostFragment.findNavController(ControlledRotationFragment.this).navigate(action);
+                action.setRopejumpType(ROPEJUMP_TYPE.SIMPLE.getValue());
+                NavHostFragment.findNavController(SimpleRopeJumpFragment.this).navigate(action);
 
             }
         });
 
-        getParentFragmentManager().setFragmentResultListener("measure", this, new FragmentResultListener() {
+
+        EventBus.getDefault().register(this);
+
+
+        getParentFragmentManager().setFragmentResultListener("ropeJump", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
                 // We use a String here, but any type that can be put in a Bundle is supported
-                Long result = bundle.getLong("session_id");
-                Float measure = bundle.getFloat("sample_measure");
+                Long sessionId = bundle.getLong("session_id");
+                Integer measure = bundle.getInt("number");
+                EXERCICE_STATUS result = EXERCICE_STATUS.valueOf(bundle.getInt("result"));
+                ROPEJUMP_TYPE type = ROPEJUMP_TYPE.valueOf(bundle.getInt("type"));
 
-                ControlledRotationFragmentDirections.ActionControlledRotationFragmentToControlledRotationDetailFragment action = ControlledRotationFragmentDirections.actionControlledRotationFragmentToControlledRotationDetailFragment();
-                action.setSessionId(session_id);
-                action.setAirTime(measure);
-                NavHostFragment.findNavController(ControlledRotationFragment.this).navigate(action);
+                RopeJump ropeJump = new RopeJump(sessionId, type, result, measure, result.getPoints());
+                ropeJumpRepository.save(ropeJump);
+
 
             }
         });
 
-        EventBus.getDefault().register(this);
+
         return binding.getRoot();
 
     }
@@ -129,7 +140,7 @@ public class ControlledRotationFragment extends Fragment {
             case UPDATE_CONTROLLED_ROTATION:
                 ControlledRotationFragmentDirections.ActionControlledRotationFragmentToControlledRotationDetailFragment action = ControlledRotationFragmentDirections.actionControlledRotationFragmentToControlledRotationDetailFragment();
                 action.setControlledRotationId(event.getuID());
-                NavHostFragment.findNavController(ControlledRotationFragment.this).navigate(action);
+                NavHostFragment.findNavController(SimpleRopeJumpFragment.this).navigate(action);
                 break;
         }
     }
@@ -140,11 +151,13 @@ public class ControlledRotationFragment extends Fragment {
 
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         EventBus.getDefault().unregister(this);
         binding = null;
     }
+
 
 }

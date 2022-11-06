@@ -34,6 +34,15 @@
                 app:argType="long" />
         </action>
 
+        <action
+            android:id="@+id/action_SessionFragment_to_SimpleRopeJumpFragment"
+            app:destination="@id/SimpleRopeJumpFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+        </action>
+
 
     </fragment>
 
@@ -56,11 +65,49 @@
         </action>
 
     </fragment>
+
     <fragment
         android:id="@+id/NewVideoFragment"
         android:name="ch.nblotti.airtime.video.ui.NewVideoFragment"
         android:label="@string/video_fragment_label"
         tools:layout="@layout/fragment_new_video"></fragment>
+    <fragment
+        android:id="@+id/NewRopeFragment"
+        android:name="ch.nblotti.airtime.ropejump.ui.NewRopeJumpFragment"
+        android:label="@string/video_fragment_label"
+        tools:layout="@layout/fragment_new_rope_jump"></fragment>
+
+
+    <fragment
+        android:id="@+id/SimpleRopeJumpFragment"
+        android:name="ch.nblotti.airtime.ropejump.ui.simpleropejump.SimpleRopeJumpFragment"
+        android:label="@string/ropejump_fragment_label"
+        tools:layout="@layout/fragment_simple_rope_jump">
+
+        <argument
+            android:name="session_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+
+        <argument
+            android:name="ropejump_type"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_SimpleRopeJumpFragment_to_NewRopeJumpFragment"
+            app:destination="@id/NewRopeFragment">
+            <argument
+                android:name="session_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+            <argument
+                android:name="ropejump_type"
+                android:defaultValue="1"
+                app:argType="integer" />
+        </action>
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/ControlledRotationDetailFragment"

@@ -109,6 +109,16 @@
         <item name="android:fontFamily">@font/roboto_slab</item>
 
     </style>
+
+    <style name="Theme.AirTime.NewRopeJumpFragment" parent="Theme.AirTime.Detail">
+
+
+    </style>
+
+    <style name="Theme.AirTime.NewRopeJumpFragment.Time" parent="Theme.AirTime.Detail">
+        <item name="android:textSize">40dp</item>
+    </style>
+
     <style name="Theme.AirTime.DetailPopup" parent="Theme.AirTime.Detail">
         <item name="android:textColor">@color/pink3_background</item>
     </style>

@@ -23,6 +23,9 @@
     <string name="conrolled_rotation_detail_result">Exercice Result</string>
     <string name="rotation_conrolled_detail_label">Controlled Rotation Detail</string>
     <string name="spinner_title">test</string>
+    <string name="ropejump_fragment_label">Rope jump</string>
+    <string name="rope_jump_result">Répetitions</string>
+    <string name="rope_jump_detail_time">15</string>
 
     <string-array name="exercice_result_dropdown_item">
         <item>Insuffisant</item>
@@ -30,6 +33,12 @@
         <item>Suffisant</item>
         <item>Satisfaisant</item>
         <item>Excellent</item>
+    </string-array>
+
+    <string-array name="rope_jump_result_dropdown_item">
+        <item>Insuffisant</item>
+        <item>Passable</item>
+        <item>Satisfaisant</item>
     </string-array>
 
 </resources>

@@ -11,6 +11,9 @@ import java.text.SimpleDateFormat;
 
 import javax.inject.Singleton;
 
+import ch.nblotti.airtime.ropejump.RopeJump;
+import ch.nblotti.airtime.ropejump.RopeJumpDao;
+import ch.nblotti.airtime.ropejump.RopeJumpRepository;
 import ch.nblotti.airtime.rotation.controlledrotation.ControlledRotationDao;
 import ch.nblotti.airtime.rotation.controlledrotation.ControlledRotationRepository;
 import ch.nblotti.airtime.sample.SampleDao;
@@ -39,6 +42,15 @@ public class AirTimeModule {
 
     @Provides
     @Singleton
+    static RopeJumpDao provideRopeJumpDao(AppDatabase appDatabase) {
+        return appDatabase.ropeJumpDao();
+    }
+
+
+    
+
+    @Provides
+    @Singleton
     static SessionDao provideSessionDao(AppDatabase appDatabase) {
         return appDatabase.sessionDao();
     }
@@ -60,6 +72,13 @@ public class AirTimeModule {
     static ControlledRotationRepository provideControlledRotationRepository(ControlledRotationDao controlledRotationDao) {
         return new ControlledRotationRepository(controlledRotationDao);
     }
+
+    @Provides
+    @Singleton
+    static RopeJumpRepository provideRopeJumpRepository(RopeJumpDao ropeJumpDao) {
+        return new RopeJumpRepository(ropeJumpDao);
+    }
+
 
 
     @Provides

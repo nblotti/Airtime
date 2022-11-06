@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pink3_background"
+    android:clickable="true"
+    android:theme="@style/Theme.AirTime.NewRopeJumpFragment"
+    android:weightSum="100"
+    tools:context=".ropejump.ui.NewRopeJumpFragment">
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="40"
+        android:background="@drawable/detail_table_border"
+        android:clipToOutline="true"
+
+        android:src="@drawable/splashr" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@drawable/detail_table_border"
+        android:theme="@style/Theme.AirTime.Detail.TableRow"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/controlled_rotation_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/Theme.AirTime.NewRopeJumpFragment.Time"
+            android:text="@string/conrolled_rotation_detail_id"></TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="10"
+        android:background="@drawable/detail_table_border">
+
+        <TextView
+            android:id="@+id/exercice_seconds"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:layout_marginBottom="0dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:theme="@style/Theme.AirTime.NewRopeJumpFragment.Time"
+            android:text="@string/rope_jump_detail_time"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@drawable/detail_table_border"
+        android:theme="@style/Theme.AirTime.Detail.TableRow"
+
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="50"
+            android:text="@string/rope_jump_result"></TextView>
+
+        <NumberPicker
+            android:id="@+id/exercice_number"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginBottom="0dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"/>/>
+
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@drawable/detail_table_border"
+        android:theme="@style/Theme.AirTime.Detail.TableRow"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="50"
+            android:text="@string/conrolled_rotation_detail_result"></TextView>
+
+        <Spinner
+            android:id="@+id/exercice_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="50"
+            android:entries="@array/rope_jump_result_dropdown_item"
+            android:popupTheme="@style/Theme.AirTime.DetailPopup"
+            android:spinnerMode="dropdown"
+            android:textAlignment="textEnd"
+            android:clickable="false"
+            android:textColor="@android:color/black"
+            android:theme="@style/Theme.AirTime.DetailPopup" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:background="@drawable/detail_table_border"
+
+        android:backgroundTint="@color/pink3_background"
+        android:gravity="right">
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/done_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pink_background"
+            android:text="Reset"
+            android:textColor="@color/pink3_background"
+            android:theme="@style/Theme.AirTime.Detail.Button" />
+        <Button
+            android:id="@+id/done_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pink_background"
+            android:text="Start"
+            android:textColor="@color/pink3_background"
+            android:theme="@style/Theme.AirTime.Detail.Button" />
+        <Button
+            android:id="@+id/done_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pink_background"
+            android:text="Save"
+            android:textColor="@color/pink3_background"
+            android:theme="@style/Theme.AirTime.Detail.Button" />
+
+
+    </TableRow>
+</TableLayout>

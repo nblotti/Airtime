@@ -64,8 +64,10 @@ public class SessionFragment extends Fragment {
         Long session;
         switch (event.getEventType()) {
             case JR_S_CLICK:
-
-
+                session = event.getuID();
+                SessionFragmentDirections.ActionSessionFragmentToSimpleRopeJumpFragment S2SRJAction = SessionFragmentDirections.actionSessionFragmentToSimpleRopeJumpFragment();
+                S2SRJAction.setSessionId(session);
+                NavHostFragment.findNavController(SessionFragment.this).navigate(S2SRJAction);
                 break;
 
             case JR_D_CLICK:
@@ -82,7 +84,7 @@ public class SessionFragment extends Fragment {
                 S2CRAction.setSessionId(session);
                 NavHostFragment.findNavController(SessionFragment.this).navigate(S2CRAction);
 
-                   break;
+                break;
 
             case R_D_CLICK:
                 session = event.getuID();

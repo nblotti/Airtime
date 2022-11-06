@@ -8,10 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import ch.nblotti.airtime.rotation.controlledrotation.ControlledRotation;
-import ch.nblotti.airtime.rotation.controlledrotation.ControlledRotationDao;
 import ch.nblotti.airtime.rotation.controlledrotation.ControlledRotationRepository;
-import ch.nblotti.airtime.sample.Sample;
-import ch.nblotti.airtime.sample.SampleRepository;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
@@ -29,7 +26,7 @@ public class ControlledRotationViewModel extends ViewModel {
     }
 
 
-    public LiveData<List<ControlledRotation>> getSamples(long sessionId) {
+    public LiveData<List<ControlledRotation>> getAllControlledRotation(long sessionId) {
 
         return controlledRotationRepository.getAllBySesssionId(sessionId);
     }
